@@ -1,0 +1,29 @@
+# Core XML Processing
+lxml==4.9.3
+python-dateutil==2.8.2
+
+# Database
+sqlite3
+
+# Data Processing
+pandas==2.1.1
+numpy==1.25.2
+
+# API Framework (Optional)
+fastapi==0.103.1
+uvicorn==0.23.2
+pydantic==2.4.2
+
+# Utilities
+python-dotenv==1.0.0
+click==8.1.7
+colorama==0.4.6
+
+# Development & Testing
+pytest==7.4.2
+pytest-cov==4.1.0
+black==23.9.1
+flake8==6.1.0
+
+# Logging
+structlog==23.1.0

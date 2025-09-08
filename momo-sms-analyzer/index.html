@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoMo SMS Analytics Dashboard</title>
+    <link rel="stylesheet" href="web/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@2.29.3/index.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="dashboard-header">
+            <h1>📱 MoMo SMS Analytics Dashboard</h1>
+            <div class="header-info">
+                <span class="last-updated" id="lastUpdated">Last updated: Loading...</span>
+                <button class="refresh-btn" onclick="loadDashboardData()">🔄 Refresh</button>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <!-- Loading State -->
+            <div class="loading-state" id="loadingState">
+                <div class="loader"></div>
+                <p>Loading dashboard data...</p>
+            </div>
+
+            <!-- Error State -->
+            <div class="error-state hidden" id="errorState">
+                <div class="error-message">
+                    <h3>⚠️ Error Loading Data</h3>
+                    <p id="errorText">Unable to load dashboard data. Please try refreshing the page.</p>
+                    <button onclick="loadDashboardData()">Try Again</button>
+                </div>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content hidden" id="dashboardContent">
+                
+                <!-- Summary Cards -->
+                <section class="summary-cards">
+                    <div class="card">
+                        <div class="card-icon">💰</div>
+                        <div class="card-content">
+                            <h3>Total Amount</h3>
+                            <p class="metric" id="totalAmount">UGX 0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon">📊</div>
+                        <div class="card-content">
+                            <h3>Total Transactions</h3>
+                            <p class="metric" id="totalTransactions">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon">📈</div>
+                        <div class="card-content">
+                            <h3>Average Transaction</h3>
+                            <p class="metric" id="avgTransaction">UGX 0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon">🏆</div>
+                        <div class="card-content">
+                            <h3>Most Active Category</h3>
+                            <p class="metric" id="topCategory">-</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Charts Section -->
+                <section class="charts-section">
+                    
+                    <!-- Transaction Categories Chart -->
+                    <div class="chart-container">
+                        <h3>Transaction Categories</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Transaction Types Chart -->
+                    <div class="chart-container">
+                        <h3>Debit vs Credit</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="typeChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Network Distribution Chart -->
+                    <div class="chart-container">
+                        <h3>Network Distribution</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="networkChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Monthly Trends Chart -->
+                    <div class="chart-container full-width">
+                        <h3>Monthly Transaction Trends</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="trendsChart"></canvas>
+                        </div>
+                    </div>
+
+                </section>
+
+                <!-- Data Tables Section -->
+                <section class="tables-section">
+                    
+                    <!-- Top Categories Table -->
+                    <div class="table-container">
+                        <h3>Transaction Categories Breakdown</h3>
+                        <div class="table-wrapper">
+                            <table id="categoryTable">
+                                <thead>
+                                    <tr>
+                                        <th>Category</th>
+                                        <th>Count</th>
+                                        <th>Total Amount</th>
+                                        <th>Average Amount</th>
+                                        <th>Percentage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Network Statistics Table -->
+                    <div class="table-container">
+                        <h3>Network Statistics</h3>
+                        <div class="table-wrapper">
+                            <table id="networkTable">
+                                <thead>
+                                    <tr>
+                                        <th>Network</th>
+                                        <th>Transactions</th>
+                                        <th>Total Amount</th>
+                                        <th>Market Share</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </section>
+
+                <!-- Insights Section -->
+                <section class="insights-section">
+                    <h3>📋 Key Insights</h3>
+                    <div class="insights-grid">
+                        <div class="insight-card">
+                            <h4>Transaction Patterns</h4>
+                            <ul id="transactionInsights">
+                                <!-- Populated by JavaScript -->
+                            </ul>
+                        </div>
+                        
+                        <div class="insight-card">
+                            <h4>Usage Trends</h4>
+                            <ul id="usageInsights">
+                                <!-- Populated by JavaScript -->
+                            </ul>
+                        </div>
+                        
+                        <div class="insight-card">
+                            <h4>Network Analysis</h4>
+                            <ul id="networkInsights">
+                                <!-- Populated by JavaScript -->
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <footer class="dashboard-footer">
+            <p>&copy; 2023 MoMo SMS Analytics Team. Built with ❤️ for better financial insights.</p>
+        </footer>
+    </div>
+
+    <script src="web/chart_handler.js"></script>
+</body>
+</html>
